@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy policy — Life OS engine</title>
+<style>
+  :root { color-scheme: light dark; --fg: #16161a; --muted: #5b5b66; --bg: #fbfbf9; --line: #e3e3dd; --link: #2b5fd9; }
+  @media (prefers-color-scheme: dark) {
+    :root { --fg: #ededf0; --muted: #a0a0ad; --bg: #16161a; --line: #2e2e36; --link: #8fb0ff; }
+  }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 4rem 1.5rem 6rem; }
+  h1 { font-size: 1.5rem; margin: 0 0 .25rem; letter-spacing: -0.01em; }
+  .sub { color: var(--muted); margin: 0 0 2.5rem; }
+  h2 { font-size: 1rem; margin: 2.25rem 0 .6rem; }
+  p { margin: 0 0 1rem; }
+  ul { margin: 0 0 1rem; padding-left: 1.2rem; }
+  li { margin-bottom: .45rem; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .9em;
+         background: color-mix(in srgb, currentColor 8%, transparent); padding: .1em .35em; border-radius: 3px; }
+  a { color: var(--link); }
+  footer { margin-top: 3.5rem; padding-top: 1.25rem; border-top: 1px solid var(--line);
+           color: var(--muted); font-size: .875rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Privacy policy</h1>
+  <p class="sub">Life OS engine · 12 September 2026</p>
+
+  <p>
+    The Life OS engine is a single-user personal tool run by
+    <a href="https://github.com/Civic454">Mason Lowe</a> for his own data only. It has no
+    other users and collects nothing from anyone else. This policy describes what the
+    application accesses from his own Google Account and what happens to it.
+  </p>
+
+  <h2>Google data the app requests</h2>
+  <ul>
+    <li>
+      <code>.../auth/calendar.readonly</code> — read-only access to Google Calendar.
+      Used to see events, their times and their descriptions, so that commitments with
+      real dates can be tracked and prepared for. The app never creates, edits or deletes
+      calendar entries under this scope.
+    </li>
+    <li>
+      <code>.../auth/gmail.readonly</code> — read-only access to Gmail.
+      Used to notice things that create a commitment: a deadline in a course announcement,
+      an application closing, a reply that is owed. The app reads message
+      <strong>headers</strong> (subject, sender, recipient, date, list id), labels and
+      Gmail's own short snippet. It does not store message bodies. It never sends,
+      archives, deletes or modifies mail.
+    </li>
+  </ul>
+
+  <h2>Where the data goes</h2>
+  <p>
+    Into a private PostgreSQL database hosted on Railway, accessible only to the sole user.
+    It is not sold, rented, published, or shared with any third party, and it is not used
+    for advertising or for any purpose other than showing that user his own next actions.
+  </p>
+  <p>
+    Short extracts — for example a subject line or a calendar event title — may be sent to
+    third-party AI model providers (OpenAI, Google and Anthropic) to classify or summarise
+    them, under those providers' API terms. No credentials, and no full message bodies,
+    are sent.
+  </p>
+
+  <h2>How long it is kept</h2>
+  <ul>
+    <li>Records of what was observed are kept as the app's long-term memory.</li>
+    <li>Any stored message content is deleted after 90 days.</li>
+    <li>Logs of model usage are kept for 12 months.</li>
+  </ul>
+
+  <h2>Limited Use</h2>
+  <p>
+    The app's use of information received from Google APIs adheres to the
+    <a href="https://developers.google.com/terms/api-services-user-data-policy">
+    Google API Services User Data Policy</a>, including the Limited Use requirements.
+  </p>
+
+  <h2>Withdrawing access</h2>
+  <p>
+    Access can be revoked at any time at
+    <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>,
+    which immediately and permanently stops the app reading anything further.
+  </p>
+
+  <h2>Contact</h2>
+  <p>
+    Via <a href="https://github.com/Civic454">github.com/Civic454</a>.
+  </p>
+
+  <footer><a href="index.html">← Life OS engine</a></footer>
+</main>
+</body>
+</html>
