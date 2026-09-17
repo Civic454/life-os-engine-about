@@ -28,7 +28,7 @@
 <body>
 <main>
   <h1>Privacy policy</h1>
-  <p class="sub">Life OS engine · 12 September 2026</p>
+  <p class="sub">Life OS engine · updated 17 September 2026</p>
 
   <p>
     The Life OS engine is a single-user personal tool run by
@@ -50,22 +50,34 @@
       Used to notice things that create a commitment: a deadline in a course announcement,
       an application closing, a reply that is owed. The app reads message
       <strong>headers</strong> (subject, sender, recipient, date, list id), labels and
-      Gmail's own short snippet. It does not store message bodies. It never sends,
-      archives, deletes or modifies mail.
+      Gmail's own short snippet. It does not store message bodies. Under this scope it
+      never archives, deletes or modifies mail.
+    </li>
+    <li>
+      <code>.../auth/gmail.send</code> — send-only access to Gmail.
+      Used for one thing: sending a message the user has approved himself, from a card in
+      the app, with a second confirming tap. The app never sends mail on its own. This
+      scope cannot read, archive, delete or modify mail.
     </li>
   </ul>
 
   <h2>Where the data goes</h2>
   <p>
     Into a private PostgreSQL database hosted on Railway, accessible only to the sole user.
-    It is not sold, rented, published, or shared with any third party, and it is not used
-    for advertising or for any purpose other than showing that user his own next actions.
+    Other than the AI processing described below, it is not sold, rented, published, or
+    shared with any third party, and it is not used for advertising or for any purpose
+    other than showing that user his own next actions.
   </p>
   <p>
-    Short extracts — for example a subject line or a calendar event title — may be sent to
-    third-party AI model providers (OpenAI, Google and Anthropic) to classify or summarise
-    them, under those providers' API terms. No credentials, and no full message bodies,
-    are sent.
+    Short extracts — for example an email's sender, subject line and Gmail's preview text,
+    or a calendar event's title, time, location and the start of its description — may be
+    sent to AI models to classify or summarise them. These requests pass through
+    OpenRouter, a model gateway, with prompt logging turned off, and are answered only by
+    providers on a fixed approved list: currently Microsoft Azure, OpenAI, Amazon Bedrock,
+    Google, DeepInfra, Fireworks, Together, Parasail, CoreWeave and NextBit. Each is based
+    in the US or the EU, and none may train AI models on this data; some keep requests for
+    a limited period under their API terms. No provider based in China is used. No
+    credentials, and no full message bodies, are sent.
   </p>
 
   <h2>How long it is kept</h2>
