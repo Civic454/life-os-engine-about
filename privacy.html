@@ -28,7 +28,7 @@
 <body>
 <main>
   <h1>Privacy policy</h1>
-  <p class="sub">Life OS engine · updated 18 September 2026</p>
+  <p class="sub">Life OS engine · updated 19 September 2026</p>
 
   <p>
     The Life OS engine is a single-user personal tool run by
@@ -63,6 +63,15 @@
       sends mail on its own, and nothing it reads can cause a send. This scope cannot read,
       archive, delete or modify mail.
     </li>
+    <li>
+      <code>.../auth/drive.file</code> — access only to files the app itself creates in
+      Google Drive. Used for one thing: a nightly backup copy of the app's own database,
+      saved to a folder called "Life OS database copies" in the user's own Drive. It
+      cannot see, open or change any other file in Drive. It keeps the newest 14 daily
+      copies and the first copy of each month, and moves older copies to Drive's bin,
+      which Google empties after 30 days. It also reads how much Google storage is free,
+      so the user is warned before the account fills up.
+    </li>
   </ul>
 
   <h2>Where the data goes</h2>
@@ -71,6 +80,11 @@
     Other than the AI processing described below, it is not sold, rented, published, or
     shared with any third party, and it is not used for advertising or for any purpose
     other than showing that user his own next actions.
+  </p>
+  <p>
+    Each night a copy of that database is saved to the user's own Google Drive, as described
+    above, so it survives if the host fails. The copy holds exactly the records this page
+    describes the database holding, nothing more, and only the user can open it.
   </p>
   <p>
     Short extracts — for example an email's sender, subject line and Gmail's preview text,
