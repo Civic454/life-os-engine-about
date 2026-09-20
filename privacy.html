@@ -53,11 +53,10 @@
       Gmail's own short snippet, and nothing else.
       <strong>It reads the text of each new email</strong> — at the moment it arrives, to
       decide whether it carries something the user has to do, and again when he asks about
-      that email in the app's chat or through his own Claude connector. Sign-in codes,
-      one-time passwords, magic links, password resets and device verifications are
-      recognised before anything is read and are never sent to a model at all; anything
-      that looks like a credential is removed from what is sent, and a message found to
-      carry one is not read further. <strong>Message bodies are not stored</strong>: the
+      that email in the app's chat or through his own Claude connector. No message is
+      skipped: anything that looks like a credential, a card number or a one-time code is
+      removed from the copy sent to a model, and a message about signing in also has its
+      links reduced to their web address. <strong>Message bodies are not stored</strong>: the
       text is read from Gmail when it is needed and kept nowhere. Under this scope the app
       never archives, deletes or modifies mail.
     </li>
@@ -96,10 +95,11 @@
     Content is sent to AI models so they can sort it and pull out what the user has to do:
     an email's sender, subject line and <strong>text</strong>, or a calendar event's title,
     time, location and the start of its description. Before anything is sent, the app
-    decides in its own code how much of a message may go: nothing at all for sign-in and
-    security mail, one line for a known automated error report, the subject alone for a
-    message carrying a credential, and the text otherwise — with credentials, card numbers
-    and one-time codes removed from whatever is sent. These requests pass through
+    removes from it, in its own code, anything that looks like a credential, a card number
+    or a one-time code; a message about signing in also has its links reduced to their web
+    address. One known automated error report is cut to its single error line, because its
+    full text carries a live access token. Nothing else is withheld and no message is
+    skipped. These requests pass through
     OpenRouter, a model gateway, with prompt logging turned off, and are answered only by
     providers on a fixed approved list: currently Microsoft Azure, OpenAI, Amazon Bedrock,
     Google, DeepInfra, Fireworks, Together, Parasail, CoreWeave and NextBit. Each is based
