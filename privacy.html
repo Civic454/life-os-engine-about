@@ -28,7 +28,7 @@
 <body>
 <main>
   <h1>Privacy policy</h1>
-  <p class="sub">Life OS engine · updated 19 September 2026</p>
+  <p class="sub">Life OS engine · updated 20 September 2026</p>
 
   <p>
     The Life OS engine is a single-user personal tool run by
@@ -48,11 +48,17 @@
     <li>
       <code>.../auth/gmail.readonly</code> — read-only access to Gmail.
       Used to notice things that create a commitment: a deadline in a course announcement,
-      an application closing, a reply that is owed. The app reads message
+      an application closing, a reply that is owed. The app stores message
       <strong>headers</strong> (subject, sender, recipient, date, list id), labels and
-      Gmail's own short snippet. When the user asks about a particular email — in the
-      app's chat, or through his own Claude connector — the app reads that email's full
-      text from Gmail to answer him. It does not store message bodies. Under this scope it
+      Gmail's own short snippet, and nothing else.
+      <strong>It reads the text of each new email</strong> — at the moment it arrives, to
+      decide whether it carries something the user has to do, and again when he asks about
+      that email in the app's chat or through his own Claude connector. Sign-in codes,
+      one-time passwords, magic links, password resets and device verifications are
+      recognised before anything is read and are never sent to a model at all; anything
+      that looks like a credential is removed from what is sent, and a message found to
+      carry one is not read further. <strong>Message bodies are not stored</strong>: the
+      text is read from Gmail when it is needed and kept nowhere. Under this scope the app
       never archives, deletes or modifies mail.
     </li>
     <li>
@@ -87,24 +93,27 @@
     describes the database holding, nothing more, and only the user can open it.
   </p>
   <p>
-    Short extracts — for example an email's sender, subject line and Gmail's preview text,
-    or a calendar event's title, time, location and the start of its description — may be
-    sent to AI models to classify or summarise them. When the user asks the app's chat, or
-    his Claude connector, about a particular email, that email's full text may be sent in
-    the same way so the model can answer him. These requests pass through
+    Content is sent to AI models so they can sort it and pull out what the user has to do:
+    an email's sender, subject line and <strong>text</strong>, or a calendar event's title,
+    time, location and the start of its description. Before anything is sent, the app
+    decides in its own code how much of a message may go: nothing at all for sign-in and
+    security mail, one line for a known automated error report, the subject alone for a
+    message carrying a credential, and the text otherwise — with credentials, card numbers
+    and one-time codes removed from whatever is sent. These requests pass through
     OpenRouter, a model gateway, with prompt logging turned off, and are answered only by
     providers on a fixed approved list: currently Microsoft Azure, OpenAI, Amazon Bedrock,
     Google, DeepInfra, Fireworks, Together, Parasail, CoreWeave and NextBit. Each is based
     in the US or the EU, and none may train AI models on this data; some keep requests for
     a limited period under their API terms. No provider based in China is used. No
-    credentials are sent, and a full message body is sent only when the user asks about
-    that email.
+    credentials are sent, and no message body is stored by this app — what a provider keeps
+    under its own API terms is described above.
   </p>
 
   <h2>How long it is kept</h2>
   <ul>
     <li>Records of what was observed are kept as the app's long-term memory.</li>
-    <li>Any stored message content is deleted after 90 days.</li>
+    <li>Message bodies are never stored. Short quotations — at most 200 characters, as
+      evidence for something the app recorded — are kept with the record they explain.</li>
     <li>Logs of model usage are kept for 12 months.</li>
   </ul>
 
